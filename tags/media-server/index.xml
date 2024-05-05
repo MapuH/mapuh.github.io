@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Блогът на Марин</title>
-    <link>https://mmarinov.eu/</link>
-    <description>Recent content on Блогът на Марин</description>
+    <title>media-server on Блогът на Марин</title>
+    <link>https://mmarinov.eu/tags/media-server/</link>
+    <description>Recent content in media-server on Блогът на Марин</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>bg-BG</language>
-    <lastBuildDate>Sun, 05 May 2024 09:34:57 +0300</lastBuildDate><atom:link href="https://mmarinov.eu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 May 2024 09:34:57 +0300</lastBuildDate><atom:link href="https://mmarinov.eu/tags/media-server/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Домашен медия сървър с miniDLNA</title>
       <link>https://mmarinov.eu/posts/home-media-server-with-minidlna/</link>

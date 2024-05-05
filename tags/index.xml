@@ -5,6 +5,37 @@
     <link>https://mmarinov.eu/tags/</link>
     <description>Recent content in Тагове on Блогът на Марин</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>bg-BG</language><atom:link href="https://mmarinov.eu/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>bg-BG</language>
+    <lastBuildDate>Sun, 05 May 2024 09:34:57 +0300</lastBuildDate><atom:link href="https://mmarinov.eu/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dlna</title>
+      <link>https://mmarinov.eu/tags/dlna/</link>
+      <pubDate>Sun, 05 May 2024 09:34:57 +0300</pubDate>
+      
+      <guid>https://mmarinov.eu/tags/dlna/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>media-server</title>
+      <link>https://mmarinov.eu/tags/media-server/</link>
+      <pubDate>Sun, 05 May 2024 09:34:57 +0300</pubDate>
+      
+      <guid>https://mmarinov.eu/tags/media-server/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>self-hosted</title>
+      <link>https://mmarinov.eu/tags/self-hosted/</link>
+      <pubDate>Sun, 05 May 2024 09:34:57 +0300</pubDate>
+      
+      <guid>https://mmarinov.eu/tags/self-hosted/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
   </channel>
 </rss>

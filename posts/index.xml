@@ -5,6 +5,115 @@
     <link>https://mmarinov.eu/posts/</link>
     <description>Recent content in Статии on Блогът на Марин</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>bg-BG</language><atom:link href="https://mmarinov.eu/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>bg-BG</language>
+    <lastBuildDate>Sun, 05 May 2024 09:34:57 +0300</lastBuildDate><atom:link href="https://mmarinov.eu/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Домашен медия сървър с miniDLNA</title>
+      <link>https://mmarinov.eu/posts/home-media-server-with-minidlna/</link>
+      <pubDate>Sun, 05 May 2024 09:34:57 +0300</pubDate>
+      
+      <guid>https://mmarinov.eu/posts/home-media-server-with-minidlna/</guid>
+      <description>Един от най-лесните способи за стрийминг на видео, снимки и музика в домашната мрежа е чрез протокола DLNA. 1
+Достатъчно е да имате компютър, на който да инсталирате и конфигурирате медия сървъра и някакво съдържание, което да стриймвате. Приложението, което използвам е miniDLNA - лек и бърз DLNA/UPnP-AV сървър, наличен в повечето линукс дистрибуции.
+Какво е нужно? Компютър, на който да инсталирате сървъра Приложението е ултра леко и би трябвало да тръгне на почти всичко.</description>
+      <content>&lt;p&gt;Един от най-лесните способи за стрийминг на видео, снимки и музика в домашната мрежа е чрез протокола DLNA. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Достатъчно е да имате компютър, на който да инсталирате и конфигурирате медия сървъра и някакво съдържание, което да стриймвате. Приложението, което използвам е &lt;strong&gt;miniDLNA&lt;/strong&gt; - лек и бърз DLNA/UPnP-AV сървър, наличен в повечето линукс дистрибуции.&lt;/p&gt;
+&lt;h3 id=&#34;какво-е-нужно&#34;&gt;Какво е нужно?&lt;/h3&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;strong&gt;Компютър, на който да инсталирате сървъра&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;Приложението е ултра леко и би трябвало да тръгне на почти всичко. Аз ползвам един Dell MiniPC, където вървят и други процеси, но дори и предишно поколение RaspberryPi или някой стар лаптоп биха свършили работа.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Линукс операционна система&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;Инструкциите са за Debian 12 (важи също за всички Debian-базирани дистрибуции като Ubuntu, Linux Mint и др.). За дистрибуции, базирани на Fedora и Arch, потърсете как се инсталира miniDLNA, но конфигурацията след това ще е сходна.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Локална мрежа&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;DLNA сървърът трябва да е в същата мрежа с устройствата, към които ще се стриймва съдържанието (смарт телевизори, лаптопи, таблети и др.). Най-често всички устройства в дома са свързани към рутера на интернет доставчика, така че това условие е изпълнено. Желателно е компютърът с DLNA сървъра да е свързан с кабел към мрежата. Безжична връзка също ще работи, но могат да възникнат проблеми при паралелен стрийминг към много клиентски устройства.&lt;/dd&gt;
+&lt;dt&gt;&lt;strong&gt;Хранилище за данни (по избор)&lt;/strong&gt;&lt;/dt&gt;
+&lt;dd&gt;Трябва да осигурите достатъчно място, където да се съхранява мултимедийното съдържание - филми, музика, снимки. Това може да е директно на диска на компютъра, на който е инсталиран сървъра, или на външен диск, свързан към него.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h3 id=&#34;инсталация&#34;&gt;Инсталация&lt;/h3&gt;
+&lt;p&gt;За да инсталирате miniDLNA, изпълнете следната команда в терминала:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt update &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt install -y minidlna
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ако имате активиран firewall, трябва да позволите входящ трафик към порт 8200:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo ufw allow 8200/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;конфигурация-на-сървъра&#34;&gt;Конфигурация на сървъра&lt;/h3&gt;
+&lt;p&gt;miniDLNA &lt;strong&gt;няма&lt;/strong&gt; графичен интерфейс, всички настройки са достъпни във файла &lt;code&gt;/etc/minidlna.conf&lt;/code&gt;, който може да отворите с предпочитания си текстов редактор.&lt;/p&gt;
+&lt;p&gt;Дефинирайте пътищата към мултимедийното съдържание, като за всяка папка се посочва какъв тип е (видео - V, аудио - A, снимки - P).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Path to the directory you want scanned for media files.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# This option can be specified more than once if you want multiple directories&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# scanned.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# If you want to restrict a media_dir to a specific content type, you can&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# prepend the directory name with a letter representing the type (A, P or V),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# followed by a comma, as so:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#   * &amp;#34;A&amp;#34; for audio    (eg. media_dir=A,/var/lib/minidlna/music)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#   * &amp;#34;P&amp;#34; for pictures (eg. media_dir=P,/var/lib/minidlna/pictures)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#   * &amp;#34;V&amp;#34; for video    (eg. media_dir=V,/var/lib/minidlna/videos)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#   * &amp;#34;PV&amp;#34; for pictures and video (eg. media_dir=PV,/var/lib/minidlna/digital_camera)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;media_dir=V,/opt/minidlna/Videos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;media_dir=A,/opt/minidlna/Music&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;media_dir=P,/opt/minidlna/Pictures&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Използването на opt директорията е само примерно. Ако съдържанието е на външен диск, закачен на &lt;code&gt;/mnt/storage&lt;/code&gt;, тогава може да дефинирате:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;media_dir=V,/mnt/storage/Videos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;media_dir=A,/mnt/storage/Music&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Важно е minidlna да има read permissions върху папките и файловете, за да може да ги прочете.&lt;/p&gt;
+&lt;p&gt;Друга настройки, които обикновено променям са:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;root_container=B           &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# управлява структурата от папки, които клиентските устройства ще виждат&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;friendly_name=DebianDLNA   &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# името на сървъра, което ще се изобразява на клиентските устройства&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;inotify=yes                &lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;# автоматично следене за нови файлове&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Запазете промените и рестартирайте сървиса:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl restart minidlna.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;За да проверите дали DLNA сървърът функционира:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;systemctl status minidlna.service
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;● minidlna.service - MiniDLNA lightweight DLNA/UPnP-AV server
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Loaded: loaded &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;/lib/systemd/system/minidlna.service; enabled; preset: enabled&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Active: active &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;running&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt; since Sun 2024-05-05 18:46:36 EEST; 5min ago
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       Docs: man:minidlnad&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;1&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;             man:minidlna.conf&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;5&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   Main PID: &lt;span style=&#34;color:#ae81ff&#34;&gt;27981&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;minidlnad&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      Tasks: &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;limit: 18949&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     Memory: 11.9M
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        CPU: 281ms
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     CGroup: /system.slice/minidlna.service
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;             └─27981 /usr/sbin/minidlnad -f /etc/minidlna.conf -P /run/minidlna/minidlna.pid -S -r
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Трябва да виждате &lt;code&gt;active&lt;/code&gt; и &lt;code&gt;enabled&lt;/code&gt; (това означава, че DLNA сървърът ще стартира автоматично заедно с операционната система).&lt;/p&gt;
+&lt;h3 id=&#34;свързване-на-клиентските-устройства&#34;&gt;Свързване на клиентските устройства&lt;/h3&gt;
+&lt;p&gt;За да достъпите мултимедийното съдържание, не се изискват никакви специални настройки от страна на клиента. Всяко приложение на вашия смарт телевизор, телефон или таблет, стига да е съвместимо с DLNA, би трябвало да &amp;ldquo;вижда&amp;rdquo; сървъра в локалната мрежа.&lt;/p&gt;
+&lt;p&gt;
+  &lt;figure class=&#34;center&#34; &gt;
+    &lt;img src=&#34;https://mmarinov.eu/images/20240505-minidlna-01.jpg&#34;  alt=&#34;miniDLNA with LG Smart TV&#34;   style=&#34;border-radius: 8px;&#34;  /&gt;
+    
+      &lt;figcaption class=&#34;left&#34; &gt;miniDLNA на LG Smart TV&lt;/figcaption&gt;
+    
+  &lt;/figure&gt;
+
+
+
+  &lt;figure class=&#34;center&#34; &gt;
+    &lt;img src=&#34;https://mmarinov.eu/images/20240505-minidlna-02.jpg&#34;  alt=&#34;miniDLNA with VLC on Android&#34;   style=&#34;border-radius: 8px;&#34;  /&gt;
+    
+      &lt;figcaption class=&#34;left&#34; &gt;miniDLNA на VLC/Android&lt;/figcaption&gt;
+    
+  &lt;/figure&gt;
+
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Бележка относно сигурността:&lt;/strong&gt; miniDLNA е предназначен за ползване единствено в затворена локална мрежа, не позволявайте достъп до сървъра от интернет. DLNA протоколът не е сигурен, трафикът не се криптира. Всяко устройство, което е свързано към мрежата ви, ще има достъп до мултимедийното съдържание, което се предоставя от сървъра.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;предимства-и-недостатъци-на-minidlna&#34;&gt;Предимства и недостатъци на miniDLNA&lt;/h3&gt;
+&lt;p&gt;От една страна възможностите на miniDLNA са силно ограничени - липсва графичен интерфейс за настройка, няма възможност за контролиране на съдържанието спрямо различни потребители или създаване на персонализирани плейлисти. Ако имате нужда от подобна функционалност, ще трябва да се насочите към други решения.&lt;/p&gt;
+&lt;p&gt;miniDLNA изпълнява една единствена задача, но за сметка на това много добре - предоставя мултимедийно съдържание към всяко устройство в мрежата ви. Това го прави изключително лек и лесен за конфигуриране, което ви дава възможност да го инсталирате дори на micro pc с SSH достъп и да го заврете в някой шкаф вкъщи, където да работи постоянно. DLNA протоколът е широко разпространен и съвместим с по-стари модели смарт телевизори.&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;DLNA (Digital Living Network Alliance) е съвкупност от стандарти за съвместимост при споделяне на дигитално съдържание между различни мултимедийни устройства. - &lt;a href=&#34;https://en.wikipedia.org/wiki/DLNA&#34;&gt;https://en.wikipedia.org/wiki/DLNA&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</content>
+    </item>
+    
   </channel>
 </rss>

@@ -5,6 +5,17 @@
     <link>https://mmarinov.eu/categories/</link>
     <description>Recent content in Категории on Блогът на Марин</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>bg-BG</language><atom:link href="https://mmarinov.eu/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>bg-BG</language>
+    <lastBuildDate>Sun, 05 May 2024 09:34:57 +0300</lastBuildDate><atom:link href="https://mmarinov.eu/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>self-hosted</title>
+      <link>https://mmarinov.eu/categories/self-hosted/</link>
+      <pubDate>Sun, 05 May 2024 09:34:57 +0300</pubDate>
+      
+      <guid>https://mmarinov.eu/categories/self-hosted/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
   </channel>
 </rss>
